@@ -14,6 +14,15 @@ in the project's main folder, after cloning the repository:
 git submodule update --init --recursive
 ```
 
+Requirements
+============
+
+Python **3** is required, to install all dependencies:
+
+```
+pip install -r requirements.txt
+```
+
 Experiments
 ===========
 
