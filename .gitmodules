@@ -1,0 +1,3 @@
+[submodule "momabs"]
+	path = momabs
+	url = https://bitbucket.org/teammorl/thomcode.git
