@@ -1,0 +1,52 @@
+
+/* -- single numbers -- */
+
+.traffic {
+    text-align:left;
+
+    width:320px;
+    padding:10px;
+    margin:auto;
+
+    background-color: var(--light-blue);
+    border-color: var(--dark-blue);
+    color: var(--dark-red);
+
+    border-radius: 20px;
+    box-shadow: inset 0 0 10px #000;
+
+    font-size:90%;
+}
+
+.traffic:hover, .moving-copy {
+    background-color: var(--light-pink);
+    border-color: var(--dark-red);
+    color: var(--dark-blue);
+}
+
+.traffic-line-sep {
+    opacity: 0.2;
+    height: 0.5px;
+    background-color: var(--dark-red);
+}
+
+.traffic-small {
+    width:350px !important;
+    height:auto !important;
+    margin:auto !important;
+    font-size:70% !important;
+}
+
+.invisible {
+    display: none;
+}
+
+.dragover-item {
+    margin-top: 80px !important;
+}
+
+
+/* use with ranking and clustering */
+.container-fluid {
+    padding: 30px 10% 0 10%;
+}

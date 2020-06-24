@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- bootstrap -->
+    <link href="../static/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- my stylesheets -->
+    <link rel="stylesheet" type="text/css" href="../static/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/main_traffic.css">
+    <link rel="stylesheet" type="text/css" href="../static/pairwise.css">
+
+</head>
+
+<body>
+
+
+    <!-- header with question mark -->
+    <div class="jumbotron"> <div class="container" style="padding:0"> <div class="row">
+        <div class="col-sm-8" style="padding:0">
+            <h1> PAIRWISE COMPARISONS </h1>
+            <p> In each step, please pick the <strong> better </strong> option. </p>
+        </div>
+    </div> </div> </div>
+
+    <!-- container that can hold bootstrap rows -->
+    <div class="container">
+
+        <div class="row" style="text-align:left; margin:auto;">
+            <p style="width:100%"> Click on the option you prefer, and then choose whether you want a new item ("next item")
+                or whether you are happy with the final answer, and want to finish the experiment ("finish").</p>
+        </div>
+
+        <div class="row no-gutter" id="pairwise-comparison">
+
+            <!-- Item 1 -->
+            <div class="col-6 pairwise-job">
+                <form action="../choose_pairwise_traffic" method="post">
+
+                    <!-- information we pass on when this job is clicked -->
+                    <input type="hidden" name="username" value="{{username}}">
+                    <input type="hidden" name="item-clicked" value="1">
+                    <input type="hidden" name="winner" value="{% for i in range(11) %} {{item1[i]}} , {% endfor %}">
+                    <input type="hidden" name="loser" value="{% for i in range(11) %} {{item2[i]}} , {% endfor %}">
+                    <input type="hidden" name="buttonType" value="">
+
+                    <!-- information about the option which is displayed -->
+                    <div class="row single-item traffic traffic-small" id="left" onclick="return mouseClickJob(event)" onmouseenter="return mouseEnterJob(event);" onmouseleave="return mouseLeaveJob(event)">
+                        {% for i in range(11) %}
+                            <div class="col-sm-2 single-item-text"> {{obj_abbrev[i]}}: {{item1[i]}} </div>
+                            {% if obj_names[i] == 'D - PT Hobbemastraat in' %}
+                                <div class="col-sm-12 traffic-line-sep single-item-text"></div>
+                            {% endif %}
+                            {% if obj_names[i] == 'D - Bicycles to Vondelpark' %}
+                                <div class="col-sm-2 single-item-text"> </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="col-6 pairwise-job">
+                <form action="../choose_pairwise_traffic" method="post">
+
+                    <!-- information we pass on when this item is clicked -->
+                    <input type="hidden" name="username" value="{{username}}">
+                    <input type="hidden" name="item-clicked" value="2">
+                    <input type="hidden" name="winner" value="{% for i in range(11) %} {{item2[i]}} , {% endfor %}">
+                    <input type="hidden" name="loser" value="{% for i in range(11) %} {{item1[i]}} , {% endfor %}">
+                    <input type="hidden" name="buttonType" value="">
+
+                    <!-- information about the item which is displayed -->
+                    <div class="row single-item traffic traffic-small" id="right" onclick="return mouseClickJob(event)" onmouseenter="return mouseEnterJob(event);" onmouseleave="return mouseLeaveJob(event)">
+                        {% for i in range(11) %}
+                            <div class="col-sm-2 single-item-text"> {{obj_abbrev[i]}}: {{item2[i]}} </div>
+                            {% if obj_names[i] == 'D - PT Hobbemastraat in' %}
+                                <div class="col-sm-12 single-item-text traffic-line-sep"></div>
+                            {% endif %}
+                            {% if obj_names[i] == 'D - Bicycles to Vondelpark' %}
+                                <div class="col-sm-2 single-item-text"> </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- next item button -->
+        <div class="row justify-content-end">
+        <div class="col-3" style="margin-top:50px; margin-right:10px;">
+            <image class="submit-button disabled" src="../static/images/button_next.png" onmouseover="this.src='../static/images/button_next_hover.png'" onmouseout="this.src='../static/images/button_next.png'" onclick="return handleSubmit('next')"></image>
+            <div style="height:350px;"></div>
+            <image class="submit-button disabled" src="../static/images/button_end.png" onmouseover="this.src='../static/images/button_end_hover.png'" onmouseout="this.src='../static/images/button_end.png'" onclick="return handleSubmit('end')"></image>
+        </div>
+        </div>
+
+
+    </div>
+
+    <!-- javascript for fancy things -->
+    <script type="text/javascript"> var winner = {{ side_clicked }} </script>
+    <script type="text/javascript" src="../static/pairwise_traffic.js"></script>
+
+</body>
+</html>

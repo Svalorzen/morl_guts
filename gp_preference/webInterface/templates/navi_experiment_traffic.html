@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="../static/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" type="text/css" href="../static/main.css">
+  <link rel="stylesheet" type="text/css" href="../static/main_jobs.css">
+</head>
+
+<body>
+
+    <!-- header with question mark -->
+    <div class="jumbotron"> <div class="container" style="padding:0"> <div class="row">
+        <div class="col-8" style="padding:0">
+            <h1> Experiment: Traffic Regulation </h1>
+            <p> Supporting Multi-Objective Decision Making. </p>
+        </div>
+    </div> </div> </div>
+
+    <!-- container that can hold bootstrap rows -->
+    <div class="container">
+
+            <div class="row justify-content-center" style="margin-top:30px;"> <!-- start different tutorials -->
+
+                <p style="font-size:130%; width:100%; margin-left:auto; text-align:justify;">
+                    To start the experiment, click below.
+                    Note that we leave it up to you to end the experiment,
+                    once you are satisfied with an answer.
+                </p>
+
+                <form action="../start_{{query_type}}_traffic/{{username}}" method="POST">
+                    <button class='btn-primary'> <p style="font-size:80%">Experiment:</p><p style="font-size:200%; text-transform:uppercase;">{{query_type}}</p></button>
+                    <input type="hidden" name="experiment_type" value="pairwise">
+                    <input type="hidden" name="username" value="{{username}}">
+                </form>
+
+                </div>
+
+
+            </div> <!-- end different tutorials -->
+
+    </div> <!-- end container for bootstrap rows -->
+
+</body>
+</html>

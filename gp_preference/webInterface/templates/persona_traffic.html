@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="../static/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" type="text/css" href="../static/main.css">
+  <link rel="stylesheet" type="text/css" href="../static/main_traffic.css">
+</head>
+
+<body>
+
+    <!-- header with question mark -->
+    <div class="jumbotron"> <div class="container" style="padding:0"> <div class="row">
+        <div class="col-8" style="padding:0">
+            <h1> Experiment: Traffic Regulation </h1>
+            <p> Supporting Multi-Objective Decision Making. </p>
+        </div>
+    </div> </div> </div>
+
+
+    <!-- container that can hold bootstrap rows -->
+    <div class="container">
+
+        <!-- WELCOME GIF AND TEXT -->
+        <div class="row">
+            <p style="font-size:130%; width:100%; margin-left:auto; text-align:justify;">
+                In this experiment, you are asked to select the options
+                according to your own preferences. There is an algorithm
+                running in the background which selects which options to
+                present, and aims at suggesting better ones over time.
+                <br><br>
+                One option has the following attributes (this is the average):
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="row single-item traffic">
+                {% for i in range(11) %}
+                    <div class="col-sm-9"> {{obj_names[i]}}: </div>
+                    <div class="col-sm-3"> {{traffic_example[i]}} </div>
+                    {% if obj_names[i] != 'Q - Block E2' %}
+                        <div class="col-sm-12 traffic-line-sep"></div>
+                    {% endif %}
+                    {% if obj_names[i] == 'D - Bicycles to Vondelpark' %}
+                        <div class="col-sm-12 traffic-line-sep"></div>
+                        <div class="col-sm-12 traffic-line-sep"></div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row">
+            <p style="font-size:130%; width:100%; margin-left:auto; text-align:justify; padding-top:20px;">
+                During the experiment, these will displayed like this:
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="row single-item traffic traffic-small">
+                {% for i in range(11) %}
+                    <div class="col-sm-2"> {{obj_abbrev[i]}}: {{traffic_example[i]}} </div>
+                    {% if obj_names[i] == 'D - PT Hobbemastraat in' %}
+                        <div class="col-sm-12 traffic-line-sep"></div>
+                    {% endif %}
+                    {% if obj_names[i] == 'D - Bicycles to Vondelpark' %}
+                        <div class="col-sm-2"> </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- BUTTON -->
+        <div class="row justify-content-md-center" style="margin-top: 20px; margin-bottom:30px;">
+            <form action="../start_experiment/{{username}}">
+                 <button style="font-size:150%; height:100px; width:150px" class="btn-primary"> Got it! </button>
+             </form>
+        </div>
+
+    </div> <!-- end container for bootstrap rows -->
+
+</body>
+</html>

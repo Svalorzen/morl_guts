@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- bootstrap -->
+    <link href="../static/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- my stylesheets -->
+    <link rel="stylesheet" type="text/css" href="../static/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/main_traffic.css">
+    <link rel="stylesheet" type="text/css" href="../static/ranking.css">
+
+</head>
+
+<body>
+
+    <!-- header with question mark -->
+    <div class="jumbotron"> <div class="container" style="padding:0"> <div class="row">
+        <div class="col-sm-8" style="padding:0">
+            <h1> RANKING </h1>
+            <p> In each step, please <strong> rank </strong> the options from best (top) to worst (bottom) </p>
+        </div>
+    </div> </div> </div>
+
+
+    <!-- rest of page (bootstrap container for rows) -->
+    <div class="container-fluid" style="'width:100%; padding:0 0 0 0 !important;">
+
+        <!-- description of what to do -->
+        <div class="row no-gutter">
+            <p style="width:100%"> Please rank the options (drag from the left to the right side and rank them there),
+                and then choose whether you want a new item ("next item")
+                or whether you are happy with the final answer, and want to finish the experiment ("finish").</p>
+        </div>
+
+        <!-- start sorting areas -->
+        <div class="row justify-content-md-center sorting-area">
+
+            <!-- unranked jobs -->
+            <div class="col-4" id="unranked-items" ondragenter="return dragEnter(event)" ondrop="return handleDrop(event)" ondragover="return dragOver(event)">
+                {% for j in range(traffic_unranked|length) %}
+
+                    {% set item = traffic_unranked[j] %}
+
+                    <div class="row single-item traffic traffic-small" id="{{IDs_unranked[j]}}" draggable="true" ondragstart="return dragStart(event)" ondragend="return dragEnd(event)">
+                        {% for i in range(11) %}
+                            <div class="col-sm-2"> {{obj_abbrev[i]}}: {{item[i]}} </div>
+                            {% if obj_names[i] == 'D - PT Hobbemastraat in' %}
+                                <div class="col-sm-12 traffic-line-sep"></div>
+                            {% endif %}
+                            {% if obj_names[i] == 'D - Bicycles to Vondelpark' %}
+                                <div class="col-sm-2"> </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                {% endfor %}
+            </div>
+
+            <!-- ranked items -->
+            <div class="col-6 col-ranking">
+                <div class="row">
+
+                    <!-- arrow -->
+                    <div class="col-3" id="arrow">
+                        <img style="left:100%" height="90%" src="../static/images/arrow_long.png" />
+                    </div>
+
+                    <!-- job list -->
+                    <div class="col-9" style="padding-bottom:100px;" id="ranked-items" ondragenter="return dragEnter(event)" ondrop="return handleDrop(event)" ondragover="return dragOver(event)">
+                        {% for j in range(traffic_ranked|length) %}
+
+                            {% set item = traffic_ranked[j] %}
+
+                            <div class="row single-item traffic traffic-small" id="{{IDs_ranked[j]}}" draggable="true" ondragstart="return dragStart(event)" ondragend="return dragEnd(event)">
+                                {% for i in range(11) %}
+                                    <div class="col-sm-2"> {{obj_abbrev[i]}}: {{item[i]}} </div>
+                                    {% if obj_names[i] == 'D - PT Hobbemastraat in' %}
+                                        <div class="col-sm-12 traffic-line-sep"></div>
+                                    {% endif %}
+                                    {% if obj_names[i] == 'D - Bicycles to Vondelpark' %}
+                                        <div class="col-sm-2"> </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- next item button -->
+            <div class="col-2" style="margin-top:50px;">
+                <form id="subForm" action="../submit_ranking_traffic" method="post" style="float:right;">
+                    <!-- information we pass on when ranking is submitted -->
+                    <input type="hidden" name="username" value="{{username}}">
+                    <input type="hidden" name="number_counter" value="{{number_counter}}">
+
+                    <input type="hidden" name="rankingResult" value="">
+                    <input type="hidden" name="buttonType" value="">
+
+                    <!-- Next button -->
+                    <image class="submit-button" src="../static/images/button_next.png" onmouseover="this.src='../static/images/button_next_hover.png'" onmouseout="this.src='../static/images/button_next.png'" onclick="return handleSubmit('next')"></image>
+                    <div style="height:350px;"></div>
+                    <image class="submit-button" src="../static/images/button_end.png" onmouseover="this.src='../static/images/button_end_hover.png'" onmouseout="this.src='../static/images/button_end.png'" onclick="return handleSubmit('end')"></image>
+
+                </form>
+            </div>
+
+        </div> <!-- end sorting areas -->
+
+        <div class="row">
+            <div id="hidingSpot" style="min-height:100px;">
+                <div style="z-index:2; position:absolute; background-color:var(--light-red); width:100%; height:200px;"></div>
+            </div>
+        </div>
+
+    </div> <!-- end container for bootstrap rows -->
+
+
+    <!-- javascript for drag&drop -->
+    <script type="text/javascript" src="../static/ranking.js"></script>
+
+
+</body>
+</html>

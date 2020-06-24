@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="../static/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" type="text/css" href="../static/main.css">
+</head>
+
+<body>
+
+    <!-- header-->
+    <div class="jumbotron">
+        <h1> Preference Elicitation Study: Traffic </h1>
+        <p> Supporting Multi-Objective Decision Making. </p>
+    </div>
+
+    <!-- rest of page -->
+    <div class="container">
+
+        <!-- introduction text -->
+        <div class="row">
+                <p style="font-size:130%; text-align:justify;">
+                    Welcome to this experiment on multi-objective decision making
+                    for selecting parameters for traffic regulation in Amsterdam.
+                    <br> <br>
+                    We built this web-interface to make the process easy, and appreciate
+                    the time you take to test it. The results used in this experiment
+                    are from the simulator, and averaged over 11 runs per parameter setting
+                    (of which there are 256). We removed all results that are dominated by
+                    other results, which left us with 75.
+                    The aim of this experiment is to find the best parameter settings,
+                    from those 75 results, according to your preferences.
+                    <br> <br>
+                    Note: Javascript has to be enabled, and the experiments do not work on mobile.
+                </p>
+        </div>
+
+        <!-- registration of user -->
+        <div class="row justify-content-md-center" style="min-height:100px;">
+
+            <!-- registration: username is not defined yet -->
+            {% if (username is not defined) or (username == 'invalid') or (username == 'existing') %}
+
+                <p style="font-size:130%">
+                    Please enter your name so we can record your answers:
+                </p>
+
+                <form name='registration_for' action="register_user" method="POST">
+                    <input style="margin-left:10px;" name="username"/>
+                    <button class="btn-primary" style="margin-left:5px;">Let's go!</button>
+                </form>
+
+                {% if username == 'invalid' %}
+                    <p style="color:red;">
+                        Sorry, that name is invalid. Use only alphanumeric characters.
+                    </p>
+                {% elif username == 'existing' %}
+                    <p style="color:red;">
+                        This name is already registered. Choose a different one please.
+                    </p>
+                {% else %}
+                    <p style="color:red; margin-left:5px; opacity:0; visibility:hidden;"> I'm just a placeholder. </p>
+                {% endif %}
+
+            {% endif %}
+
+        </div>
+
+
+    </div> <!-- end container for rows -->
+
+</body>
+
+</html>

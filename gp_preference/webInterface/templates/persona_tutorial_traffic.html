@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="../static/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" type="text/css" href="../static/main.css">
+</head>
+
+<body>
+
+<!-- header with question mark -->
+<div class="jumbotron"> <div class="container" style="padding:0"> <div class="row">
+    <div class="col-sm-8" style="padding:0">
+        <h1> Tutorial </h1>
+        <p> Supporting Multi-Objective Decision Making. </p>
+    </div>
+</div> </div> </div>
+
+    <!-- container that can hold bootstrap rows -->
+    <div class="container">
+
+        <!-- WELCOME GIF AND TEXT -->
+        <div class="row">
+                <p style="font-size:130%; width:100%; margin-left:auto; text-align:justify;">
+                    Welcome to the tutorial! Here we show you how the web
+                    interface works. You will be asked to sort numbers.
+                    For this tutorial, please assume that you like higher
+                    numbers better than lower numbers.
+                </p>
+        </div>
+
+        <!-- BUTTON -->
+        <div class="row justify-content-md-center" style="margin-top: 20px; margin-bottom:30px;">
+            <form action="../start_tutorial" method="POST">
+                 <button style="font-size:150%; height:100px; width:150px" class="btn-primary"> Got it! </button>
+                 <input type="hidden" name="username" value="{{username}}">
+             </form>
+        </div>
+
+    </div> <!-- end container for bootstrap rows -->
+
+</body>
+</html>
