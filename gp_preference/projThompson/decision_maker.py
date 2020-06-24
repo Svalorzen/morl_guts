@@ -52,7 +52,8 @@ class DecisionMaker:
             self.dataset.add_single_comparison(vect1, vect2)
         else:
             self.dataset.add_single_comparison(vect2, vect1)
-        self.update_gp(self.dataset)
+        if not dont_update:
+            self.update_gp(self.dataset)
         return utl1 > utl2
 
     def sample(self, sample_points):
